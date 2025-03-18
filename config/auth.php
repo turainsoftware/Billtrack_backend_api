@@ -41,9 +41,9 @@ return [
             'provider' => 'users',
         ],
         'api' => [
-            'driver' => 'jwt',
-            'provider' => 'users',
-        ],
+        'driver' => 'sanctum',
+        'provider' => 'user',
+    ],
     ],
 
     /*
@@ -67,6 +67,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'user' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\UserS::class,
         ],
 
         // 'users' => [
