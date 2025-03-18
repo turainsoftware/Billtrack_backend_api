@@ -1,0 +1,125 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "BillTrack API",
+        "description": "This is a sample API documentation using Swagger in Laravel.",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000",
+            "description": "API Server"
+        }
+    ],
+    "paths": {
+        "/api/chk_username": {
+            "get": {
+                "tags": [
+                    "Login Api"
+                ],
+                "summary": "Check if a username exists",
+                "operationId": "30f6e466016a37c7059d6292adb4ab76",
+                "parameters": [
+                    {
+                        "name": "user_name",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Username exists or not"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    }
+                }
+            }
+        },
+        "/api/mobile_otp": {
+            "post": {
+                "tags": [
+                    "Login Api"
+                ],
+                "summary": "Generate OTP for mobile verification",
+                "operationId": "0dc98feb9f74f4478627dc05724129b0",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "phone_number"
+                                ],
+                                "properties": {
+                                    "phone_number": {
+                                        "type": "string",
+                                        "example": "9876543210"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OTP sent successfully"
+                    },
+                    "400": {
+                        "description": "Invalid phone number format"
+                    }
+                }
+            }
+        },
+        "/api/verify_otp": {
+            "get": {
+                "tags": [
+                    "Login Api"
+                ],
+                "summary": "Validate OTP for mobile verification",
+                "operationId": "bdddd1fb07053b3bab5c559c959cd5f4",
+                "parameters": [
+                    {
+                        "name": "phone_number",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "7003906943"
+                        }
+                    },
+                    {
+                        "name": "getotp",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "1234"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OTP Verified successfully"
+                    },
+                    "400": {
+                        "description": "Invalid phone number format"
+                    },
+                    "401": {
+                        "description": "Invalid OTP or user not found"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Login Api",
+            "description": "Login Api"
+        }
+    ]
+}
